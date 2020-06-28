@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calaculator</title>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<!-- Bootstrap Query -->
+	<script type="text/javascript" src="bootstrap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#sumBtn').click(function(){
+				Add();
+			});
+
+			$('#subBtn').click(function(){
+				Sub();
+			});
+
+			$('#mulBtn').click(function(){
+				Multiply();
+			});
+
+			$('#divBtn').click(function(){
+				Divide();
+			});
+		});
+
+		function Add(){
+			var add=parseInt($('#fnum').val())+parseInt($('#snum').val());
+			$('#result').text(add);
+		}
+		function Sub(){
+			var sub=parseInt($('#fnum').val())-parseInt($('#snum').val());
+			$('#result').text(sub);
+		}
+		function Multiply(){
+			var mul=parseInt($('#fnum').val())*parseInt($('#snum').val());
+			$('#result').text(mul);
+		}
+		function Divide(){
+			var div=parseInt($('#fnum').val())/parseInt($('#snum').val());
+			$('#result').text(div);
+		}
+
+	</script>
+	<div class="jumbotron">
+		<h1 class="ml-5 display-4">Calculator</h1>
+	</div>
+
+	<div class="container">
+		<div class="offset-3">
+			<form>
+				<div class="form-group row">
+					<label for="fname" class="col-md-3">First Number:</label>
+					<div class="col-md-5">
+						<input type="number"  class="form-control" id="fnum" placeholder="Enter a number">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="sname" class="col-md-3">Second Number:</label>
+					<div class="col-md-5">
+						<input type="number"  class="form-control" id="snum" placeholder="Enter a number">
+					</div>
+				</div>	
+			</form>
+			<div class="row">
+				<div class="col-md-2 my-2">			
+					<button class="btn btn-outline-primary btn-block " id="sumBtn">+</button>
+				</div>
+				<div class="col-md-2 my-2">			
+					<button class="btn btn-outline-primary btn-block" id="subBtn">-</button>
+				</div>
+				<div class="col-md-2 my-2">			
+					<button class="btn btn-outline-primary btn-block" id="mulBtn">*</button>
+				</div>
+						
+				<div class="col-md-2 my-2">
+					<button class="btn btn-outline-primary btn-block " id="divBtn">/</button>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				&nbsp;&nbsp;<h4>Result is:<span class="text-danger" id="result">  </span></h4>
+			</div>
+		</div>
+</body>
+</html>
