@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Loan Calculator</title>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	
+</head>
+<body>
+	<!-- JQuery -->
+	<script type="text/javascript" src="bootstrap/js/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			console.log('Document-ready');		
+		});
+
+		$(function(){
+
+			$('#calculate').click(function(){
+				Calculate();
+			});
+		});
+
+		function Calculate(){
+			var p=+$('#pamt').val();
+			var r=(+$('#nr').val()/100)/12;
+			var n=+$('#yr').val()*12;
+			var amt=p*((r*(1+r)**n)/((1+r)**n-1)); 
+			var res=amt.toFixed();  
+
+				$('#amt1').text(p.toLocaleString());	
+				$('#mp').text(res.toLocaleString());	
+				$('#intrate').text($('#nr').val());
+				$('.year1').text($('#yr').val());
+				$('.yrr').text($('#yr').val());
+				$('.tbody').html('');	
+
+				var mno=1,totalint=0;
+				for(var i=1;i<=n;i++){
+					var montint=p*r;
+					$('.tbody').append("<tr><td>"+"Month #"+i+"</td><td>"+p.toFixed()+"</td><td>"+montint.toFixed()+"</td><td>"+res+"</td></tr>");
+						p=p+montint-amt;
+						totalint+=montint;
+				}
+
+					$('#totalint').text(totalint.toFixed().toLocaleString());						
+		};
+		
+
+	</script>	
+	<div class="jumbotron">
+		<h1 class="ml-5 display-4">Home Loan Calculator</h1>
+		<h5 class="ml-5 ">အိမ်ရာချေးငွေတွက်ချက်ရန်</h5>
+	</div>
+	<!-- For Input Form -->
+	<div class="container ">
+		<div class="row shadow-sm bg-light mt-5 pt-5">
+			<div class="offset-2 col col-md-9 offset-1">
+				<form>
+ 	 				<div class="form-group row">
+   						<label for="pamt" class="col-md-3 col-form-label">ချေးငွေပမာဏ:</label>
+    					<div class="col-md-6">
+      						<input type="number" class="form-control" id="pamt">
+    					</div>
+  					</div>
+  					<div class="form-group row">
+    					<label for="interest" class="col-md-3 col-form-label">အတိုးနှုန်း:</label>
+    					<div class="col-md-6">
+      						<input type="number" class="form-control" id="nr">
+    					</div>
+  					</div>
+  					<div class="form-group row">
+    					<label for="year" class="col-md-3 col-form-label">ချေးယူမည့် နှစ်ပမာဏ:</label>
+    					<div class="col-md-6">
+      						<input type="number" class="form-control" id="yr">
+    					</div>
+  					</div>
+
+			  		<div class="form-group row">
+			    		<div class=" offset-7 col-md-4 offset-1">
+			      			<button type="button" class="btn btn-outline-warning" id="calculate">Calculate</button>
+			    		</div>
+			 		</div>
+				</form>
+			</div>
+		</div>	
+	</div>
+	<!-- For Your Loan Payment -->
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col col-md-5">
+				<div class="mb-lg-5"></div>
+				<table class="table table-bordered table-responsive-lg">
+					<thead>
+						<th colspan="2" class="bg-warning">ချေးငွေပေးသွင်းမှု ပုံစံ (Your Loan Payment)</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td>လစဉ် ငွေပေးချေမှု</td>
+							<td><span id="mp"></span></td>	
+						</tr>
+						<tr>
+							<td>(<span class="yrr"> </span>) နှစ်အတွင်း စုစုပေါင်းအတိုး</td>
+							<td><span id="totalint"></span></td>
+						</tr>
+						<tr>
+							<td>ချေးငွေ ပမာဏ</td>
+							<td><span id="amt1"></span></td>
+						</tr>
+						<tr>
+							<td>အတိုးနှုန်း</td>
+							<td><span id="intrate"></span>%</td>
+						</tr>
+						<tr>
+							<td>ချေးယူမည့် နှစ်ပမာဏ</td>
+							<td><span class="year1"></span> years</td>
+						</tr>
+					</tbody>
+				</table>
+	
+			</div>
+			<div class="offset-1 col-md-6">
+				<div class="text-center mb-4"><h5>(၁) နှစ်တာ ချေးငွေပေးသွင်းမှု ပုံစံ(Loan Payment Over 1 Years)</h5></div>
+				<table class="table table-bordered table-responsive-lg">
+					<thead class="bg-warning">
+						<th>Month No.</th>
+						<th>Principal</th>
+						<th>Interest</th>
+						<th>Payment</th>
+					</thead>
+					<tbody class="tbody">
+						
+					</tbody>
+				</table>	
+			</div>
+		</div>
+	</div>
+</body>
+</html>
